@@ -795,11 +795,11 @@ var Parser = (function (scope) {
 
 		isOperator: function () {
 			var code = this.expression.charCodeAt(this.pos);
-			if (code === 43) { // +
+			if (code === 43 || code === 65291) { // + or ＋
 				this.tokenprio = 0;
 				this.tokenindex = "+";
 			}
-			else if (code === 45) { // -
+			else if ([45, 8722, 65293].indexOf(code) !== -1) { // - or − or －
 				this.tokenprio = 0;
 				this.tokenindex = "-";
 			}
@@ -813,15 +813,16 @@ var Parser = (function (scope) {
 					return false;
 				}
 			}
-			else if (code === 42 || code === 8729 || code === 8226) { // * or ∙ or •
+			else if ([42, 215, 8226, 8729, 10005, 10006, 10761].indexOf(code) !== -1) {
+				// * or × or ∙ or • or ✕ or ✖ or ⨉
 				this.tokenprio = 1;
 				this.tokenindex = "*";
 			}
-			else if (code === 47) { // /
+			else if (code === 47 || code === 247) { // / or ÷
 				this.tokenprio = 2;
 				this.tokenindex = "/";
 			}
-			else if (code === 37) { // %
+			else if (code === 37 or code === 65285) { // % or ％
 				this.tokenprio = 2;
 				this.tokenindex = "%";
 			}
