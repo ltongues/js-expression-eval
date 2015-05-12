@@ -822,7 +822,7 @@ var Parser = (function (scope) {
 				this.tokenprio = 2;
 				this.tokenindex = "/";
 			}
-			else if (code === 37 or code === 65285) { // % or ％
+			else if (code === 37 || code === 65285) { // % or ％
 				this.tokenprio = 2;
 				this.tokenindex = "%";
 			}
